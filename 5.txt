@@ -1,0 +1,79 @@
+Experiment 5 - Write a Java program which imports user defined packages and uses members of the classes contained in the package.
+Code –
+package Pack1;
+import Pack2.*;
+public class Calculate
+{
+	 public static void main(String[]args)
+	  {
+		System.out.println("TYETB68 Harsh Deshmukh");
+		 Sum obj1=new Sum();
+		//Multiplication obj2 = new Multiplication(); //error
+		Division obj3=new Division();
+		obj1.add(9, 7);
+		//obj2.mul(5, 6); //error
+		obj3.div(8, 4);
+	  }
+}
+class Division
+{
+	public void div(int a,int b)
+	{
+		System.out.println("The division is "+a/b);
+	}
+}
+
+
+package Pack2;
+class Multiplication 
+{
+	void mul(int a,int b) //default function
+	{
+		System.out.println("The product is " + a*b);
+	}
+	protected void protect() //protected function
+	{
+		System.out.println("Displaying Protected Function");
+	}
+	private void privatfn() //private function
+	{
+		System.out.println("Displaying Private Function");
+	}
+	 public static void main(String[]args)
+	  {
+		 Multiplication obj = new Multiplication();
+		 obj.privatfn();
+	  }
+}
+public class Sum
+{
+  public void add(int a,int b)
+  {
+	  System.out.println("The sum is " + (a+b));
+  }
+  public static void main(String[]args)
+  {
+	  System.out.println("TYETB68 Harsh Deshmukh");
+	  Sum obj1=new Sum();
+	Multiplication obj2 = new Multiplication();
+	obj1.add(2, 3);
+	obj2.mul(5, 6);
+	obj2.protect();
+	//obj2.privatfn(); //error
+  }
+}
+
+package Pack2;
+public class Test
+{
+	public static void main(String[]args)
+	  {
+		System.out.println("TYETB68 Harsh Deshmukh");
+		Sum obj1=new Sum();
+		Multiplication obj2 = new Multiplication();
+		obj1.add(7, 3);
+		obj2.mul(5, 9);
+		obj2.protect();
+		//obj2.privatfn(); //error
+	  }
+}

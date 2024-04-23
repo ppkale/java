@@ -1,0 +1,163 @@
+Multithreading by extending Thread class:
+ Code :
+
+ package multithreading1;
+ class multithreading extends Thread{
+ public void run() {
+ System.out.println("This Thread's id is : "+
+ Thread.currentThread().getId());
+ }
+ }
+ public class One {
+ public static void main(String args[]) {
+ 
+ int n=5;
+ for(int i=0;i<n;i++) {
+ multithreading obj = new multithreading();
+ obj.start();
+ }
+ }
+ }
+
+
+
+
+ Multithreading by implementing Runnable class:
+ Code:
+ //Aditya Koshti TYETB103
+ package multithreading1;
+ class Multithreading2 implements Runnable {
+ public void run() {
+ System.out.println("Id of current running Thread is : " +
+Thread.currentThread().getId());
+ }
+ }
+ public class two{
+ public static void main(String[] args) {
+ 
+ int n=5;
+ for(int i=0;i<n;i++) {
+ Thread obj = new Thread(new Multithreading2());
+ obj.start();
+ }
+ }
+ }
+
+
+
+
+SIMPLE BANK CLIENT :
+
+package bc;
+class BankClient {
+    private int balAmount = 5000;
+
+    synchronized void withdrawMoney(int amount) {
+        System.out.println("Withdrawing money");
+        balAmount -= amount;
+        System.out.println("The balance amount is: " + balAmount);
+    }
+
+    synchronized void depositMoney(int amount) {
+        System.out.println("Depositing money");
+        balAmount += amount;
+        System.out.println("The balance amount is: " + balAmount);
+        notify();
+    }
+}
+
+public class Communication {
+
+	public static void main(String[] args) {
+		final BankClient client = new BankClient();
+
+        new Thread(new Runnable() {
+            public void run() {
+                client.withdrawMoney(4000);
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            public void run() {
+                client.depositMoney(22000);
+            }
+        }).start();
+    }
+}
+
+
+Implementing a program for deposit and withdrawal of money using multithreading.
+ Code:
+
+package multithreading;
+package neww;
+import java.util.Scanner;
+
+class BankClient {
+    private int balamount;
+
+    BankClient() {
+        System.out.println("Enter the current balance of your account:");
+        Scanner sc = new Scanner(System.in);
+        balamount = sc.nextInt();
+    }
+
+    synchronized int getBalance() {
+        return balamount;
+    }
+
+    synchronized void withdraw() {
+        System.out.println("Enter the amount to withdraw from your account:");
+        Scanner sc = new Scanner(System.in);
+        int withdrawalAmount = sc.nextInt();
+        if (withdrawalAmount > balamount) {
+            System.out.println("Insufficient Balance");
+        } else {
+            balamount -= withdrawalAmount;
+            System.out.println("Amount has been withdrawn");
+        }
+    }
+
+    synchronized void deposit() {
+        System.out.println("Enter the amount to be deposited into your account:");
+        Scanner sc = new Scanner(System.in);
+        int depositAmount = sc.nextInt();
+        balamount += depositAmount;
+        System.out.println("Amount has been deposited");
+    }
+}
+
+public class BankAcc {
+
+	public static void main(String[] args) {
+		
+		final BankClient client = new BankClient();
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("\nChoose an action:");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. See Current Balance");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                    client.deposit();
+                    break;
+                case 2:
+                    client.withdraw();
+                    break;
+                case 3:
+                    System.out.println("Current Balance: " + client.getBalance());
+                    break;
+                case 4:
+                    System.out.println("Exiting program...");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        } while (choice != 4);
+    }
+}

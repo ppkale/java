@@ -1,0 +1,52 @@
+method -
+package ne3;
+public class Method_overload
+{
+	static int sum(int x, int y)
+	{
+		return x+y;
+	}
+	static int sum(int x, int y, int z)
+	{
+		return x+y+z;
+	}
+	static float sum(float x, float y)
+	{
+		return x+y;
+	}
+	public static void main(String[] args)
+	{
+		int a,b;
+		float c;
+		a=sum(10,5);
+		b=sum(12,5,7);
+		c=sum(5.3f,6.2f);
+		System.out.println(a+" "+b+" "+c);
+	}
+}
+
+
+constructor -
+package ne3;
+public class Constructor_overload
+{
+	int x,y;
+	float a,b;
+	Constructor_overload(int x,int y)
+	{
+		this.x=x;
+		this.y=y;
+		System.out.println(x+" "+y);
+	}
+	Constructor_overload(float a,float b)
+	{
+		this.a=a;
+		this.b=b;
+		System.out.println(a+" "+b);
+	}
+	public static void main(String[] args)
+	{
+		Constructor_overload c1=new Constructor_overload(5,3);
+		Constructor_overload c2=new Constructor_overload(7.6f,3.9f);
+	}
+}

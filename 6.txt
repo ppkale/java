@@ -1,0 +1,27 @@
+package ne6;
+interface Print_text
+{
+	void print();
+}
+interface Display
+{
+	void show();
+}
+public class Interface_demo implements Print_text,Display
+{
+	public void print()
+	{
+		System.out.println("Print_text executed");
+	}
+	public void show()
+	{
+		System.out.println("Display executed");
+	}
+	public static void main(String[] args)
+	{
+		System.out.println("Demonstration of Interface");
+		Interface_demo obj=new Interface_demo();
+		obj.print();
+		obj.show();
+	}
+}

@@ -1,0 +1,74 @@
+package prime;
+
+public class prime {
+
+	public static void main(String[] args) {
+		int count=0;
+		int n=2;
+		
+		System.out.print("First 50 prime numbers are:");
+		
+		while(count<50) {
+			boolean isPrime=true;
+			for(int i=2;i<n/2;i++) {
+				if(n%i==0) {
+					isPrime=false;
+					break;
+				}
+			}
+			
+			if(isPrime) {
+				System.out.println(n+"");
+				count++;
+			}
+			n++;
+		}
+	}
+}
+		
+		
+
+
+
+
+
+FACTORIAL:
+package exp1;
+import java.util.Scanner;
+//ashutosh jadhav tyetb075
+
+public class factorial {
+
+	public static void main(String[] args) {
+		System.out.println("Ashutosh Jadhav TYETB075");
+		
+		 System.out.println("Enter a no:");
+	        Scanner n = new Scanner(System.in);
+	        int a = n.nextInt();
+	        int result = 1;
+	        for (int i = 1; i <= a; i++) {
+	            result = result * i;
+	        }
+	        System.out.println("Factorial is:"+result);
+	    }
+
+
+	}
+SUM AND AVG:
+package exp1;
+import java.util.Scanner;
+public class sum
+public static void main(String[] args) {
+System.out.println("Enter count of nos to be entered:");
+Scanner n = new Scanner(System.in);
+int a = n.nextInt();
+int sum = 0;
+for (int i = 1; i <= a; i++) {
+System.out.println("Enter a no:");
+int b=n.nextInt();
+sum = sum + b;
+}
+float avg = sum / a;
+System.out.println("Sum of n no:" + sum);
+System.out.println("Avg of n no:" + avg);
+}
