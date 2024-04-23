@@ -1,0 +1,57 @@
+class Counter{
+private int count=0;
+public synchronized void increment(){
+count++;
+notify();
+}
+public synchronized int getcount(){
+return count;
+}
+}
+class IncrementThread extends Thread{
+private Counter counter;
+public IncrementThread(Counter counter){
+this.counter=counter;
+}
+public void run(){
+for(int i=0;i<5;i++){
+counter.increment();
+try{
+Thread.sleep(1000);
+}
+catch(InterruptedException e){
+e.printStackTrace();
+}
+}
+}
+}
+class PrintThread extends Thread{
+private Counter counter;
+public PrintThread(Counter counter){
+this.counter=counter;
+}
+public void run(){
+for(int i=0;i<5;i++){
+synchronized (counter){
+try{
+counter.wait();
+System.out.println(counter.getcount());
+}
+catch(InterruptedException e){
+e.printStackTrace();
+}
+}
+}
+}
+}
+public class Main
+{
+public static void main(String[] args) {
+System.out.println("Hello World");
+Counter c=new Counter();
+IncrementThread i=new IncrementThread(c);
+PrintThread p=new PrintThread(c);
+i.start();
+p.start();
+}
+}
